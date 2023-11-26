@@ -21,7 +21,7 @@ public class MemberDAO {
 	 * 사용자 관리 테이블에 새로운 사용자 생성.
 	 */
 	public int create(Member member) throws SQLException {
-		String sql = "INSERT INTO MEMBERINFO VALUES (?, ?, ?, ?, ?, ?)";		
+		String sql = "INSERT INTO MEMBERINFO VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {member.getMemberId(), member.getPassword(), 
 						member.getName(), member.getNickname(), member.getGender(), member.getBirth, member.getPhone(),
 						member.getEmail(), member.getRegion(), 
@@ -94,7 +94,7 @@ public class MemberDAO {
 
 	public Member getMemberData(String memberId) throws SQLException {
         String sql = "SELECT password, name, email, phone, ,nickName, gender, birth, region, commId, cName "
-        			+ "FROM MEMBERINFO u LEFT OUTER JOIN Community c ON u.commId = c.cId "
+        			+ "FROM MEMBERINFO "
         			+ "WHERE userid=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {memberId});	// JDBCUtil에 query문과 매개 변수 설정
 
@@ -128,7 +128,7 @@ public class MemberDAO {
 	 */
 	public List<Member> getHost() throws SQLException {
         String sql = "SELECT memberId, nickName, email, region, NVL(commId,0) AS commId, cName " 
-        		   + "FROM MEMBER INFO u LEFT OUTER JOIN Community c ON u.commId = c.cId "
+        		   + "FROM MEMBERINFO "
         		   + "ORDER BY memberId";
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
