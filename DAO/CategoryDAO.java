@@ -36,7 +36,7 @@ public class CategoryDAO {
 					rs.getString("title"),
 					rs.getString("contents"),
 					rs.getString("image"),
-					rs.getString("interest"),
+					rs.getString("interest"));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
