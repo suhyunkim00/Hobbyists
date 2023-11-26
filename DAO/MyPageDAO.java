@@ -26,15 +26,16 @@ public class myPageDAO {
 			List<Member> memList = new ArrayList<Member>();	// member들의 리스트 생성
 			while (rs.next()) {
 				Member member = new Member(			// User 객체를 생성하여 현재 행의 정보를 저장
-					rs.getString("memberId"),
-                    rs.getString("password"),
-					rs.getString("name"),
-                    rs.getString("nickname"),
-                    rs.getString("gender"),
-                    rs.getString("birth"),
-					rs.getString("phone"),
-					rs.getString("email"),
-                    rs.getString("region"));
+				rs.getString("memberId"),
+                    		rs.getString("password"),
+				rs.getString("name"),
+                    		rs.getString("nickname"),
+                    		rs.getString("gender"),
+                    		rs.getString("birth"),
+				rs.getString("phone"),
+				rs.getString("email"),
+                    		rs.getString("region"));
+				
 				memList.add(member);			// List에 Community 객체 저장
 			}		
 			return memList;					
