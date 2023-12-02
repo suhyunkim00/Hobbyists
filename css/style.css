@@ -11,6 +11,10 @@ header {
     align-items: end;
 }
 
+body {
+    background-color:  #FBF4F4;
+}
+
 #logo {
     padding-left: 25px;
     width: 200px;
