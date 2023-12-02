@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    background-color:  #FBF4F4;
+    justify-content: space-between;
+    height: 100px;
+    align-items: end;
+}
+
+body {
+    background-color:  #FBF4F4;
+}
+
+#logo {
+    padding-left: 25px;
+    width: 200px;
+    height: 100px;
+}
+
+#sign {
+    display: flex;
+    width: 20%;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    padding: 10px;
+    
+}
+
+#sign > a {
+    font-size: 17px;
+    color: gray;
+}
+
+#sign > a:hover {
+    color: black;
+}
+
+#sign > div {
+    border: 1px solid gray;
+    color: gray;
+    width: 1px;
+    height: 17px;
+}
+
+nav {
+    background-color: #E9C5C5;
+    font-weight: 600;
+}
+
+ul {
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+}
+
+li{
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #966D5C;
+    font-size: 20px;
+}
+
+a:hover {
+    color: black;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    background-color: #FBF4F4;
+}
+
+#welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #966D5C;
+    font-size: 40px;
+}
+
+.w-100 {
+    width: 100%;
+    height: 400px;
+}
+
+
+/*MyPage 공통 속성*/
+table {
+    margin-top: 10px;
+}
+
+#colored {
+    background-color: #E9C5C5;
+    width: auto;
+    border-radius: 5px;
+}
+
+button {
+    border-style: none;
+    border-radius: 10px;
+    width: 60px;
+    height: 40px;
+}
+
+
+/*경계선*/
+#bdLine {
+    border-right: #b5b5b5 1px solid;
+}
+
+
+/* v MyPage 프로필 영역 v */
+.profile {
+    width: 20%;
+    margin-right: 10px;
+}
+
+/*프사*/
+#pfPic {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 50px;
+    margin-right: 50px;
+}
+
+/*게시물 영역*/
+.BoardList {  
+    width: 55%;
+}
+
+/*게시물 목록 칸 크기 조절 및 색상*/
+#tbColored {
+    background-color: #E9C5C5;
+    text-align: center;
+}
+
+/*게시물 목록 밑줄*/
+#underline {
+    border-bottom: #b5b5b5 1px solid;
+}
+
+/*글쓰기 버튼 화면 하단 배치*/
+#underB {
+    margin-top: 400px;
+    margin-left: 900px;
+    background-color: #E9C5C5;
+}
