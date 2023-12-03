@@ -33,10 +33,10 @@
             // DAO에서 가져옴(지금은 예시로 코드 안에서 카테고리를 추가해서 return)
             function fetchCategories() {
                 return [
-                    { name: '카테고리1', link: 'category1.html' },
-                    { name: '카테고리2', link: 'category2.html' },
-                    { name: '카테고리3', link: 'category3.html' },
-                    { name: '카테고리4', link: 'category4.html' }
+                    { name: '카테고리1'},
+                    { name: '카테고리2'},
+                    { name: '카테고리3'},
+                    { name: '카테고리4'}
                 ];
             }
         
@@ -46,7 +46,7 @@
                 var categories = fetchCategories();
         
                 categories.forEach(function (category) {
-                    categoryList.innerHTML += ' <a href="' + category.link + '">' + category.name + '</a><br>';
+                    categoryList.innerHTML += '<a href= "' + "category_detail_" + category.name + ".html" +'">' + category.name + '</a><br>';
                 });
             }
         
