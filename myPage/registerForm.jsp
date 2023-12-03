@@ -1,3 +1,6 @@
+<%@page contentType="text/html; charset=utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,33 +10,75 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/css/registerForm.css">
   <title>Form Validator</title>
+  <script>
+    function userCreate() {
+        if (form.userId.value == "") {
+            alert("Enter a user ID.");
+            form.userId.focus();
+            return false;
+        } 
+        if (form.password.value == "") {
+            alert("Enter a user Password.");
+            form.password.focus();
+            return false;
+        }
+        if (form.password.value != form.password2.value) {
+            alert("Password does not match.");
+            form.name.focus();
+            return false;
+        }
+        if (form.name.value == "") {
+            alert("Enter a your name.");
+            form.name.focus();
+            return false;
+        }
+        var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+        if(emailExp.test(form.email.value)==false) {
+            alert("이메일 형식이 올바르지 않습니다.");
+            form.email.focus();
+            return false;
+        }
+        var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+        if(phoneExp.test(form.phone.value)==false) {
+            alert("전화번호 형식이 올바르지 않습니다.");
+            form.phone.focus();
+            return false;
+        }
+        form.submit();
+    }
+    
+    function userList(targetUri) {
+        form.action = targetUri;
+        form.submit();
+    }
+</script>
 </head>
 <body>
     <div class="container">
     <h1>Register With Us</h1>
     <table boder = "" cellspacing = "1" >
-    <FORM>
+    <form>
      <tr>
       <td text-align="center">ID</td>
       <td>
-      <input type = "text" />
+      <input type = "text" name="userId"/>
       <input type = "button" class="btn" value = "check"/>
       </td>
      </tr>
    
      <tr>
       <td> PASSWORD </td>
-      <td><input type = "password"/></td>
+      <td><input type = "password" name="password"/></td>
      </tr>
    
      <tr>
       <td> PASSWORD CHECK </td>
-      <td> <input type = "password"/></td>
+      <td> <input type = "password" name="password2"/></td>
      </tr>
    
      <tr>
       <td> NAME </td>
-      <td><input type = "text"/></td>
+      <td><input type = "text" name="name"/></td>
      </tr>
 
      <tr>
@@ -126,7 +171,7 @@
        <input type = "text"/>
       </td>
      </tr>
-    </FORM>
+    </form>
    </table>
    <br/>
    <div class="btn2">
