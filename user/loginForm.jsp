@@ -26,7 +26,7 @@
         function userCreate(targetUri) {
             form.action = targetUri;
             form.submit();
-        }
+        } //
     </script>
   </head>
   <body>
