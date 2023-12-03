@@ -52,9 +52,7 @@
 
         <%-- 페이지 로드출력 함수 호출 --%>
         <script>
-            window.onload = function() {
-                // You can add JavaScript code here if needed
-            }
+            window.onload = function() 
         </script>
     </main>
 </body>
