@@ -93,3 +93,79 @@ main {
     height: 400px;
 }
 
+/*MyPage 공통 속성*/
+table {
+    margin-top: 10px;
+}
+
+#colored {
+    background-color: #E9C5C5;
+    width: auto;
+    border-radius: 5px;
+}
+
+button {
+    border-style: none;
+    border-radius: 10px;
+    width: 60px;
+    height: 40px;
+}
+
+
+/*경계선*/
+#bdLine {
+    border-right: #b5b5b5 1px solid;
+}
+
+
+/* v MyPage 프로필 영역 v */
+.profile {
+    width: 20%;
+    margin-right: 10px;
+}
+
+/*프사*/
+#pfPic {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 50px;
+    margin-right: 50px;
+}
+
+/*게시물 영역*/
+.BoardList {  
+    width: 55%;
+}
+
+/*게시물 목록 칸 크기 조절 및 색상*/
+#tbColored {
+    background-color: #E9C5C5;
+    text-align: center;
+}
+
+/*게시물 목록 밑줄*/
+#underline {
+    border-bottom: #b5b5b5 1px solid;
+}
+
+/*글쓰기 버튼 화면 하단 배치*/
+#underB {
+    margin-top: 400px;
+    margin-left: 900px;
+    background-color: #E9C5C5;
+}
+
+/*best*/
+/*리스트 새로고침*/
+#refresh {
+    text-align: center;
+}
+
+/*best 출력화면*/
+#best {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 300px;
+}
+
+
