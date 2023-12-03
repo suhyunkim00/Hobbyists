@@ -34,13 +34,13 @@
         }
         var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
         if(emailExp.test(form.email.value)==false) {
-            alert("이메일 형식이 올바르지 않습니다.");
+            alert("Email format is not valid.");
             form.email.focus();
             return false;
         }
         var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
         if(phoneExp.test(form.phone.value)==false) {
-            alert("전화번호 형식이 올바르지 않습니다.");
+            alert("Phone number format is not valid.");
             form.phone.focus();
             return false;
         }
@@ -97,7 +97,7 @@
      <tr>
       <td> Email </td>
       <td>
-       <input type = "text"/> @ <input type = "text"/> &nbsp;&nbsp;
+        <input type="text" name="email">
        <select class="btn">
         <option> Direct Input </option>
         <option> naver.com </option>
@@ -128,13 +128,14 @@
        <input type = "radio" name = "phone"/> KT
        <input type = "radio" name = "phone"/> LGU+
       <br/>
-       <select class="btn">
+       <!--<select class="btn">
         <option> 010 </option>
         <option> 011 </option>
         <option> 016 </option>
         <option> 018 </option>
        </select>
-       <input type = "text" size = "6"/> - <input type = "text" size = "6"/>
+       <input type = "text" size = "6"/> - <input type = "text" size = "6"/>-->
+       <input type="text" name="phone">
       </td>
      </tr>
 
