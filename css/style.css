@@ -168,4 +168,27 @@ button {
     margin-bottom: 300px;
 }
 
+/* Hobbyists start */
+#posts {
+    background-color: #E9C5C5;
+    width: 80%;
+    height: 200px;
+}
 
+#post {
+    display: flex;
+}
+
+#pName, #pDate, #posts p {
+    padding: 10px;
+    font-size: 13px;
+}
+
+#pName {
+    margin-right: 50px;
+}
+
+span {
+    color: dimgray;
+}
+/* Hobbyists end */
