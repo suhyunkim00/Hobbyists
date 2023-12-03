@@ -1,18 +1,11 @@
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import model.dao.JDBCUtil;
+package model.dao;
 
-public class myPageDAO { 
-    package model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.member;
-import model.post;
 import model.dao.JDBCUtil;
+import model.User;
 
 public class myPageDAO {
 	private JDBCUtil jdbcUtil = null; public myPageDAO() { 
