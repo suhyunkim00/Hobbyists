@@ -20,12 +20,12 @@ public class UserDAO {
     /**
      * 사용자 관리 테이블에 새로운 사용자 생성.
      */
-    public int create(Member member) throws SQLException {
-        String sql = "INSERT INTO MEMBERINFO VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        Object[] param = new Object[] { member.getMemberId(), member.getPassword(),
-                member.getName(), member.getNickname(), member.getGender(), member.getBirth,
-                member.getPhone(),
-                member.getEmail(), member.getRegion(),
+    public int create(User user) throws SQLException {
+        String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        Object[] param = new Object[] { user.getUserId(), user.getPassword(),
+                user.getName(), user.getNickname(), user.getGender(), user.getBirth(),
+                user.getPhone(),
+                user.getEmail(), user.getRegion(),
                 (user.getCommId() != 0) ? user.getCommId() : null };
         jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert 문과 매개 변수 설정
         try {
@@ -41,111 +41,107 @@ public class UserDAO {
         return 0;
     }
 
-/**
-* 기존의 사용자 정보를 수정.
-*/
-public int modifyProfile(Member member) throws SQLException {
-String sql = "UPDATE MEMBERINFO "
-+ "SET password=?, name=?, email=?, phone=?, commId=?,
-nickName=?, birth=?, region=?"
-+ "WHERE userid=?";
-Object[] param = new Object[] {member.getPassword(), member.getName(),
-member.getEmail(), member.getPhone(), member.getNickname(),
-member.getBirth(), member.getRegion(),
-(user.getCommId()!=0) ? user.getCommId() : null,
-user.getMemberId()};
-jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 update 문과 매개 변수 설정
-try {
-int result = jdbcUtil.executeUpdate(); // update 문 실행
-return result;
-} catch (Exception ex) {
-jdbcUtil.rollback();
-ex.printStackTrace();
-}
-finally {
-jdbcUtil.commit();
-jdbcUtil.close(); // resource 반환
-}
-return 0;
-}
+    /**
+    * 기존의 사용자 정보를 수정.
+    */
+    public int modifyProfile(User user) throws SQLException {  
+        String sql = "UPDATE USERINFO "
+        + "SET password=?, name=?, email=?, phone=?, commId=?, nickName=?, birth=?, region=?"
+        + "WHERE userid=?";
+    Object[] param = new Object[] {user.getPassword(), user.getName(), 
+        user.getEmail(), user.getPhone(), user.getNickname(),
+        user.getBirth(), user.getRegion(), (user.getCommId()!=0) ? user.getCommId() : null, user.getUserId()};
+    
+        jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 update 문과 매개 변수 설정
 
-/**
-* 사용자 ID 에 해당하는 사용자를 삭제.
-*/
-public int deleteProfile(String memberId) throws SQLException {
-String sql = "DELETE FROM MEMBERINFO WHERE memberid=?";
-jdbcUtil.setSqlAndParameters(sql, new Object[] {userId}); // JDBCUtil 에 delete 문과 매개 변수
-설정
-try {
-int result = jdbcUtil.executeUpdate(); // delete 문 실행
-return result;
-} catch (Exception ex) {
-jdbcUtil.rollback();
-ex.printStackTrace();
-}
-finally {
-jdbcUtil.commit();
-jdbcUtil.close(); // resource 반환
-}
-return 0;
-}
+        try {
+            int result = jdbcUtil.executeUpdate(); // update 문 실행
+            return result;
+        } catch (Exception ex) {
+            jdbcUtil.rollback();
+            ex.printStackTrace();
+        } finally {
+            jdbcUtil.commit();
+            jdbcUtil.close(); // resource 반환
+        }
+        return 0;
+    }
 
-public Member getMemberData(String memberId) throws SQLException {
-String sql = "SELECT password, name, email, phone, ,nickName, gender, birth, region, commId,
-cName "
-+ "FROM MEMBERINFO "
-+ "WHERE userid=? ";
-jdbcUtil.setSqlAndParameters(sql, new Object[] {memberId}); // JDBCUtil 에 query 문과 매개 변수
-설정
-try {
-ResultSet rs = jdbcUtil.executeQuery(); // query 실행
-if (rs.next()) { // 학생 정보 발견
-Member member = new Member( // Member 객체를 생성하여 학생 정보를 저장
-memberId,
-rs.getString("password"),
-rs.getString("name"),
-rs.getString("email"),
-rs.getString("phone"),
-rs.getString("nickName"),
-rs.getString("gender"),
-rs.getString("birth"),
-rs.getString("region"),
-rs.getInt("commId"),
-rs.getString("cName"));
-return member;
-}
-} catch (Exception ex) {
-ex.printStackTrace();
-} finally {
-jdbcUtil.close(); // resource 반환
-}
-return null;
-}
+    /**
+    * 사용자 ID 에 해당하는 사용자를 삭제.
+    */
+    public int deleteProfile(String memberId) throws SQLException {
+        String sql = "DELETE FROM USERINFO WHERE userid=?";
+        jdbcUtil.setSqlAndParameters(sql, new Object[] {userId}); // JDBCUtil 에 delete 문과 매개 변수설정
+        
+        try {
+            int result = jdbcUtil.executeUpdate(); // delete 문 실행
+            return result;
+        } catch (Exception ex) {
+            jdbcUtil.rollback();
+            ex.printStackTrace();
+        } finally {
+            jdbcUtil.commit();
+            jdbcUtil.close(); // resource 반환
+        }
+        return 0;
+    }
+    
+    public User getUserData(String userId) throws SQLException {
+        String sql = "SELECT password, name, email, phone, ,nickName, gender, birth, region, commId, cName "
+        + "FROM USERINFO "
+        + "WHERE userid=? ";
+        
+        jdbcUtil.setSqlAndParameters(sql, new Object[] {userId}); // JDBCUtil 에 query 문과 매개 변수설정
+        
+        try {
+            ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+            if (rs.next()) { // 학생 정보 발견
+                User user = new User( // User 객체를 생성하여 학생 정보를 저장
+                userId,
+                rs.getString("password"),
+                rs.getString("name"),
+                rs.getString("nickName"),
+                rs.getString("gender"),
+                rs.getString("birth"),
+                rs.getString("email"),
+                rs.getString("region"),
+                rs.getString("phone"));
+                return user;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            jdbcUtil.close(); // resource 반환
+        }
+        return null;
+    }
 
     /**
      * 전체 사용자 정보를 검색하여 List 에 저장 및 반환
      */
-    public List<Member> getHost() throws SQLException {
-        String sql = "SELECT memberId, nickName, email, region, NVL(commId,0) AS commId, cName "
-                + "FROM MEMBERINFO "
-                + "ORDER BY memberId";
+    public List<User> getHost() throws SQLException {
+        String sql = "SELECT userId, nickName, email, region, NVL(commId,0) AS commId, cName "
+                + "FROM USERINFO "
+                + "ORDER BY userId";
         jdbcUtil.setSqlAndParameters(sql, null); // JDBCUtil 에 query 문 설정
         try {
             ResultSet rs = jdbcUtil.executeQuery(); // query 실행
-            List<Member> memberList = new ArrayList<Member>(); // Member 들의 리스트 생성
+            List<User> userList = new ArrayList<User>(); // Member 들의 리스트 생성
             while (rs.next()) {
-                Member member = new Member( // Member 객체를 생성하여 현재 행의 정보를 저장
-                        rs.getString("memberId"),
-                        null,
-                        rs.getString("nickName"),
-                        rs.getString("email"),
-                        rs.getString("region"),
-                        null,
-                        rs.getInt("commId"),
-                        rs.getString("cName"));
-                memberList.add(member); // List 에 User 객체 저장
+                User user = new User( // Member 객체를 생성하여 현재 행의 정보를 저장
+                    rs.getString("userId"),
+                    rs.getString("password"),
+                    rs.getString("name"),
+                    rs.getString("nickName"),
+                    rs.getString("gender"),
+                    rs.getString("birth"),
+                    rs.getString("email"),
+                    rs.getString("region"),
+                    rs.getString("phone"));
+                userList.add(user); // List 에 User 객체 저장
             }
-            return memberList;
+            return userList;
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {

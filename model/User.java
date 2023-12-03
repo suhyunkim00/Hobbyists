@@ -7,16 +7,24 @@ public class User {
 	private String userId;
 	private String password;
 	private String name;
+	private String nickName;
+	private String gender;
+	private String birth;
 	private String email;
+	private String region;
 	private String phone;
 
 	public User() { }	// 기본 생성자
 	
-	public User(String userId, String password, String name, String email, String phone) {
+	public User(String userId, String password, String name, String nickName, String gender, String birth, String email, String region, String phone) {
 		this.userId = userId;
 		this.password = password;
 		this.name = name;
+		this.nickName = nickName;
+		this.gender = gender;
+		this.birth = birth;
 		this.email = email;
+		this.region = region;
 		this.phone = phone;
 	}
 
@@ -51,12 +59,44 @@ public class User {
 		this.name = name;
 	}
 
+	public String getNickname() {
+		return nickName;
+	}
+
+	public void setNickname(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 
 	public String getPhone() {
