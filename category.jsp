@@ -45,7 +45,7 @@
             for (Map<String, String> category : categories) {
                 String categoryName = category.get("name");
         %>
-                <a href="<%= "category_detail.jsp?" + categoryName %>"><%= categoryName %></a><br>
+                <a href="<%= "category_detail.jsp?name=" + categoryName %>"><%= categoryName %></a><br>
         <%
             }
         %>
