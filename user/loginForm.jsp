@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/loginForm.css" />
+    <link rel="stylesheet" href="../css/loginForm.css" />
     <title>Form Input Wave</title>
     <script>
         function login() {
@@ -50,7 +50,7 @@
 
         <button class="btn">Login</button>
 
-        <p class="text">Don't have an account? <a href="#">Register</a></p>
+        <p class="text">Don't have an account? <a href="registerForm.jsp">Register</a></p>
       </form>
     </div>
   </body>
