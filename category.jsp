@@ -34,10 +34,10 @@
         <%-- DAO에서 가져옴(지금은 예시로 코드 안에서 카테고리를 추가해서 return) --%>
         <%
             List<Map<String, String>> categories = new ArrayList<Map<String, String>>();
-            categories.add(Map.of("name", "카테고리1"));
-            categories.add(Map.of("name", "카테고리2"));
-            categories.add(Map.of("name", "카테고리3"));
-            categories.add(Map.of("name", "카테고리4"));
+            categories.add(Map.of("name", "category1"));
+            categories.add(Map.of("name", "category2"));
+            categories.add(Map.of("name", "category3"));
+            categories.add(Map.of("name", "category4"));
         %>
         
         <%-- 카테고리 출력 --%>
@@ -45,7 +45,7 @@
             for (Map<String, String> category : categories) {
                 String categoryName = category.get("name");
         %>
-                <a href="<%= "category_detail_" + categoryName + ".jsp" %>"><%= categoryName %></a><br>
+                <a href="<%= "category_detail.jsp?" + categoryName %>"><%= categoryName %></a><br>
         <%
             }
         %>
