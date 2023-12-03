@@ -15,9 +15,9 @@
             <img id="logo" src="./img/logo.png">
         </div>
         <div id="sign">
-            <a href="./signIn.html">Sign In</a>
+            <a href="./signIn.jsp">Sign In</a>
             <div></div>
-            <a href="./signUp.html">Sign Up</a>
+            <a href="./signUp.jsp">Sign Up</a>
         </div>
     </header>
     <nav>
@@ -45,14 +45,14 @@
             for (Map<String, String> category : categories) {
                 String categoryName = category.get("name");
         %>
-                <a href="<%= "category_detail_" + categoryName + ".html" %>"><%= categoryName %></a><br>
+                <a href="<%= "category_detail_" + categoryName + ".jsp" %>"><%= categoryName %></a><br>
         <%
             }
         %>
 
         <%-- 페이지 로드출력 함수 호출 --%>
         <script>
-            window.onload = function() 
+            window.onload = function()
         </script>
     </main>
 </body>
