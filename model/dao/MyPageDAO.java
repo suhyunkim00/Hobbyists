@@ -13,17 +13,17 @@ public class myPageDAO {
 	}
 
 	/*현재 로그인된 사용자 정보를 가져옴*/
-	public List<Member> getMemberInfo(int memberId) throws SQLException { 
-		String sql = "SELECT memberId, password, name, nickname, gender, birth, phone, email, region " 
-				+ "FROM MEMBERINFO " 
-				+ "WHERE memberID=? "; 
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {memberId});
+	public List<User> getUserInfo(int userId) throws SQLException { 
+		String sql = "SELECT userId, password, name, nickname, gender, birth, phone, email, region " 
+				+ "FROM USERINFO " 
+				+ "WHERE userID=? "; 
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			List<Member> memList = new ArrayList<Member>();
-			while (rs.next()) { Member member = new Member(
-					rs.getString("memberId"),
+			List<User> memList = new ArrayList<User>();
+			while (rs.next()) { User user = new User(
+					rs.getString("userId"),
 					rs.getString("password"),
 					rs.getString("name"), 
 					rs.getString("nickname"),
@@ -33,7 +33,7 @@ public class myPageDAO {
 					rs.getString("email"),
 					rs.getString("region")); 
 
-			memList.add(member);
+			memList.add(user);
 			} 
 			return memList;
 
@@ -46,13 +46,13 @@ public class myPageDAO {
 	}
 
 	/*기존의 사용자 정보를 수정*/
-	public int modifyProfile(Member member) throws SQLException { 
-		String sql = "UPDATE MEMBERINFO " 
+	public int modifyProfile(User user) throws SQLException { 
+		String sql = "UPDATE USERINFO " 
 				+ "SET password=?, name=?, nickname=?, birth=?, phone=?, email=?, region=? " 
-				+ "WHERE MemberId=?"; 
-		Object[] param = new Object[] {member.getPassword(), member.getName(), 
-				member.get() member.getEmail(), member.getPhone(),
-				(member.getCommId()!=0) ? member.getCommId() : null, member.getmemberId()};
+				+ "WHERE UserId=?"; 
+		Object[] param = new Object[] {user.getPassword(), user.getName(), 
+				user.get() user.getEmail(), user.getPhone(),
+				(user.getCommId()!=0) ? user.getCommId() : null, user.getuserId()};
 
 		jdbcUtil.setSqlAndParameters(sql, param);
 
@@ -69,7 +69,6 @@ public class myPageDAO {
 		} 
 		return 0;
 	}
-
 
 	/*새 게시물 작성*/
 	public int addPost(Post post) throws SQLException { 
@@ -94,7 +93,7 @@ public class myPageDAO {
 
 	/*게시물 ID에 해당하는 게시물을 삭제.*/
 	public int deletePost(String postId) throws SQLException { 
-		String sql = "DELETE FROM MEMBERINFO WHERE postId=?"; 
+		String sql = "DELETE FROM USERINFO WHERE postId=?"; 
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {postId});
 		try { 
 			int result = jdbcUtil.executeUpdate(); return result;

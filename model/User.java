@@ -5,35 +5,19 @@ package model;
  */
 public class User {
 	private String userId;
-	private String password;
 	private String name;
 	private String nickName;
+	private String password;
+	private String phone;
+	private String email;
 	private String gender;
 	private String birth;
-	private String email;
+	private String joinDate;
+	private String interest;
 	private String region;
-	private String phone;
-
-	public User() { }	// 기본 생성자
+	private String profile;
 	
-	public User(String userId, String password, String name, String nickName, String gender, String birth, String email, String region, String phone) {
-		this.userId = userId;
-		this.password = password;
-		this.name = name;
-		this.nickName = nickName;
-		this.gender = gender;
-		this.birth = birth;
-		this.email = email;
-		this.region = region;
-		this.phone = phone;
-	}
-
-	public void update(User updateUser) {
-        this.password = updateUser.password;
-        this.name = updateUser.name;
-        this.email = updateUser.email;
-        this.phone = updateUser.phone;
-    }
+	public User() { }	// 기본 생성자
 	
 	public String getUserId() {
 		return userId;
@@ -41,14 +25,6 @@ public class User {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getName() {
@@ -59,12 +35,36 @@ public class User {
 		this.name = name;
 	}
 
-	public String getNickname() {
+	public String getNickName() {
 		return nickName;
 	}
 
-	public void setNickname(String nickName) {
+	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getGender() {
@@ -83,12 +83,20 @@ public class User {
 		this.birth = birth;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getJoinDate() {
+		return joinDate;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setJoinDate(String joinDate) {
+		this.joinDate = joinDate;
+	}
+
+	public String getInterest() {
+		return interest;
+	}
+
+	public void setInterest(String interest) {
+		this.interest = interest;
 	}
 
 	public String getRegion() {
@@ -99,14 +107,22 @@ public class User {
 		this.region = region;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getProfile() {
+		return profile;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
+	
 
+	public void update(User updateUser) {
+        this.password = updateUser.password;
+        this.name = updateUser.name;
+        this.email = updateUser.email;
+        this.phone = updateUser.phone;
+    }
+	
 	/* 비밀번호 검사 */
 	public boolean matchPassword(String password) {
 		if (password == null) {
@@ -124,4 +140,5 @@ public class User {
 		return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + ", phone="
 				+ phone + "]";
 	}	
+
 }
