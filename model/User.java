@@ -1,12 +1,11 @@
 package model;
 
-/**
- * 사용자 관리를 위해 필요한 도메인 클래스. USERINFO 테이블과 대응됨
- */
+/** 사용자 관리를 위해 필요한 도메인 클래스. USERINFO 테이블과 대응됨 **/
+
 public class User {
 	private String userId;
 	private String name;
-	private String nickName;
+	private String nickname;
 	private String password;
 	private String phone;
 	private String email;
@@ -35,12 +34,12 @@ public class User {
 		this.name = name;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickName(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getPassword() {
