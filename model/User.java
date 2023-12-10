@@ -17,6 +17,23 @@ public class User {
 	private String profile;
 	
 	public User() { }	// 기본 생성자
+
+	public User(String userId, String name, String nickname, String password, 
+			String phone, String email, String gender, String birth, 
+			String joinDate, String interest, String region, String profile) {
+		this.userId = userId;
+		this.name = name;
+		this.nickname = nickname;
+		this.password = password;
+		this.phone = phone;
+		this.email = email;
+		this.gender = gender;
+		this.birth = birth;
+		this.joinDate = joinDate;
+		this.interest = interest;
+		this.region = region;
+		this.profile = profile;
+	}	
 	
 	public String getUserId() {
 		return userId;
