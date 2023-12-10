@@ -143,23 +143,7 @@
       <td> BIRTH </td>
       <td>
         <div>
-            <input type="number" placeholder="Year(- - - -)">                
-            <select>
-                <option value="">Month</option>
-                <option value="">Jan</option>
-                <option value="">Feb</option>
-                <option value="">Mar</option>
-                <option value="">Apr</option>
-                <option value="">May</option>
-                <option value="">June</option>
-                <option value="">July</option>
-                <option value="">Aug</option>
-                <option value="">Sept</option>
-                <option value="">Oct</option>
-                <option value="">Nov</option>
-                <option value="">Dec</option>
-            </select>
-            <input type="number" placeholder="Day">
+            <input type="date" value="2002-01-01">
         </div>
       </td>
      </tr>
