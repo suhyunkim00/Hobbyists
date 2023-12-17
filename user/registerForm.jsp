@@ -183,14 +183,16 @@
 								value="cooking" /> <label for="cooking">요리</label>
 						</div>
 					</td>
+					<td>
+					      	<input type="submit" value="check" onclick="selectChkBox(3)"/>
+					</td>
 				</tr>
 			</table>
 		</form>
 		<br />
 		<div class="btn2">
-			<input type="submit" class="btn" value="Sign Up"
-				onclick="selectChkBox(3)" /> <input type="reset" class="btn"
-				value="Reset" />
+			<input type="submit" class="btn" value="Sign Up" />
+			<input type="reset" class="btn" value="Reset" />
 		</div>
 	</div>
 </body>
