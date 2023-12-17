@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.*" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,19 +13,19 @@
 <body>
 	<header>
 		<div>
-			<a href="../main.jsp"><img id="logo" src="../img/logo.png"></a>
+			<a href="../index.jsp"><img id="logo" src="../img/logo.png"></a>
 		</div>
 		<div id="sign">
-			<a href="../user/loginForm.jsp" target="_blank">Sign In</a>
+			<a href="../user/loginForm.jsp">Sign In</a>
 			<div></div>
-			<a href="../user/registerForm.jsp" target="_blank">Sign Up</a>
+			<a href="../user/registerForm.jsp">Sign Up</a>
 		</div>
 	</header>
 	<nav>
 		<ul>
-			<li><a href="../category.jsp">Category</a></li>
-			<li><a href="../class/best.jsp">Best</a></li>
-			<li><a href="./hobbyists.html">Hobbyists</a></li>
+			<li><a href="../category/category_list.jsp">Category</a></li>
+			<li><a href="../post/showBestPost.jsp">Best</a></li>
+			<li><a href="../post/showAllPost.jsp">Hobbyists</a></li>
 			<li><a href="#">Mypage</a></li>
 		</ul>
 	</nav>
@@ -85,15 +85,15 @@
 		</div>
 
 		<div id="bdLine"></div>
+		<div></div>
 
-		<div class="BoardList">
-			<h3>내가 쓴 게시물</h3>
+		<div class="ApplyList">
+			<h3>신청 List</h3>
 			<table>
 				<th>
 				<td id="tbColored" width="5%">번호</td>
-				<td id="tbColored">제목</td>
-				<td id="tbColored" width="5%">조회수</td>
-				<td id="tbColored" width="5%">추천수</td>
+				<td id="tbColored" width="800">제목</td>
+				<td id="tbColored" width="5%">삭제</td>
 				</th>
 				<tr>
 					<td id="underline" colspan="5">1</td>
@@ -105,7 +105,6 @@
 					<td id="underline" colspan="5">3</td>
 				</tr>
 			</table>
-			<button id="underB">글쓰기</button>
 		</div>
 	</main>
 </body>
