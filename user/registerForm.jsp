@@ -52,22 +52,21 @@
 		form.submit();
 	}
 
-	function selectChkBox(limit) {
-		var itr = document.getElementsByName("interest");
-
-		var sum = 0;
-		var count = itr.checkbox.length;
-		for (var i = 0; i < count; i++) {
-			if (itr.checkbox[i].checked == true) {
-				sum += 1;
-			}
-		}
-
-		if (sum > limit) {
-			alert("관심사는 " + limit + "개까지 선택 가능합니다!");
-			return;
-		}
-	}
+	function selectChkBox(obj){
+	    	var itr = document.getElementsByName("interest");
+	
+	    	var chkCnt = 0;	
+	    	for(var i=0;i<itr.length; i++){		
+	    		if(itr[i].checked){			
+	    			chkCnt++;		
+	    			}	
+	    		}	
+	    	if(chkCnt>3){		
+	    		alert("3개까지 체크 가능합니다!");		
+	    		obj.checked = false;		
+	    		return false;	
+	    	}
+    }
 </script>
 </head>
 <body>
@@ -184,7 +183,7 @@
 						</div>
 					</td>
 					<td>
-					      	<input type="submit" class="btn" value="check" onclick="selectChkBox(3)"/>
+					      	<input type="submit" class="btn" value="check" onclick="selectChkBox()"/>
 					</td>
 				</tr>
 			</table>
