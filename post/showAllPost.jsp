@@ -11,7 +11,7 @@
 <body>
     <header>
         <div>
-            <img id="logo" src="../img/logo.png">
+            <a href="../index.jsp"><img id="logo" src="../img/logo.png"></a>
         </div>
         <div id="sign">
             <a href="../user/loginForm.jsp">Sign In</a>
@@ -24,7 +24,7 @@
             <li><a href="../category/category_list.jsp">Category</a></li>
             <li><a href="./showBestPost.jsp">Best</a></li>
             <li><a href="#">Hobbyists</a></li>
-            <li><a href="../user/myPage.jsp">Mypage</a></li>
+            <li><a href="../myPage/myPage.jsp">Mypage</a></li>
         </ul>
     </nav>
     <main>
@@ -39,14 +39,10 @@
             </div>
             <p>
                 ...작성내용... <!-- 작성 내용 받아오기 -->
-            </p>
-            <div id="heart">
-                <i class="fa-regular fa-heart"></i>
-                <!-- <i class="fa-solid fa-heart"></i> -->
-            </div>
-            
+            </p>            
         </div>
     </main>
+    <a href="writePostingForm.jsp"><button id="underB">글쓰기</button></a>
 </body>
 <script>
     document.getElementsByTagName("i").addEventListener("click", heart)
