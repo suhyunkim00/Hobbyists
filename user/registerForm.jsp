@@ -9,7 +9,7 @@
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="../css/registerForm.css">
-<title>Form Validator</title>
+<title>Sign Up</title>
 <script>
 	function userCreate() {
 		if (form.userId.value == "") {
@@ -53,26 +53,30 @@
 	}
 
 	function selectChkBox(obj){
-	    	var itr = document.getElementsByName("interest");
-	
-	    	var chkCnt = 0;	
-	    	for(var i=0;i<itr.length; i++){		
-	    		if(itr[i].checked){			
-	    			chkCnt++;		
-	    			}	
-	    		}	
-	    	if(chkCnt>3){		
-	    		alert("3개까지 체크 가능합니다!");		
-	    		obj.checked = false;		
-	    		return false;	
-	    	}
-    }
+    	var itr = document.getElementsByName("interest");
+
+    	var chkCnt = 0;	
+    	for(var i=0;i<itr.length; i++){		
+    		if(itr[i].checked){			
+    			chkCnt++;		
+    			}	
+    		}	
+    	if(chkCnt>3) {		
+    		alert("3개까지 체크 가능합니다!");		
+    		obj.checked = false;		
+    		return false;	
+    	}
+    	else {
+    		const frm = document.getElementById("frm");
+    		frm.submit();
+    	}
+}
 </script>
 </head>
 <body>
 	<div class="container">
 		<h1>Register With Us</h1>
-		<form>
+		<form id="frm" action="../index.jsp" method="post">
 			<table boder="" cellspacing="1">
 				<tr>
 					<td text-align="center">ID</td>
@@ -182,15 +186,12 @@
 								value="cooking" /> <label for="cooking">요리</label>
 						</div>
 					</td>
-					<td>
-					      	<input type="submit" class="btn" value="check" onclick="selectChkBox()"/>
-					</td>
 				</tr>
 			</table>
 		</form>
 		<br />
 		<div class="btn2">
-			<input type="submit" class="btn" value="Sign Up" />
+			<input type="button" class="btn" value="Sign Up" onclick="selectChkBox()" />
 			<input type="reset" class="btn" value="Reset" />
 		</div>
 	</div>
