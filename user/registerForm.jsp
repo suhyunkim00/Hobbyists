@@ -51,6 +51,23 @@
         form.action = targetUri;
         form.submit();
     }
+
+    function selectChkBox(limit){
+    	itr = document.getElementByName("interest");
+    	
+    	var sum = 0;
+    	var count = itr.checkbox.length;
+    	  for(var i=0; i < count; i++ ){
+    	       if( itr.checkbox[i].checked == true ){
+    		    sum += 1;
+    			}
+    	  } 
+    	  
+    	  if( sum > limit ){ 
+    	     alert( "관심사는 " + limit + "개까지 선택 가능합니다!");
+    		 return;
+    	  }
+    }
 </script>
 </head>
 <body>
@@ -149,18 +166,43 @@
      </tr>
    
      <tr>
-      <td> INTEREST </td>
+      <td> INTEREST <span>(3개까지 선택 가능)</span></td>
       <td>
-       <input type = "text"/>
-       <input type = "text"/>
-       <input type = "text"/>
+      	<div>
+      		<input type="checkbox" name="interest" id="game" value="game"/>
+      		<label for="game">게임</label>
+      	</div>
+      	<div>
+      		<input type="checkbox" name="interest" id="pet" value="pet"/>
+      		<label for="pet">반려동물</label>
+      	</div>
+      	<div>
+      		<input type="checkbox" name="interest" id="study" value="study"/>
+      		<label for="study">스터디</label>
+      	</div>
+      	<div>
+      		<input type="checkbox" name="interest" id="sports" value="sports"/>
+      		<label for="sports">스포츠</label>
+      	</div>
+      	<div>
+      		<input type="checkbox" name="interest" id="travel" value="travel"/>
+      		<label for="travel">여행</label>
+      	</div>
+      	<div>
+      		<input type="checkbox" name="interest" id="art" value="art"/>
+      		<label for="art">예술</label>
+      	</div>
+      	<div>
+      		<input type="checkbox" name="interest" id="cooking" value="cooking"/>
+      		<label for="cooking">요리</label>
+      	</div>
       </td>
      </tr>
     </form>
    </table>
    <br/>
    <div class="btn2">
-   <input type = "submit" class="btn" value = "Sign Up"/>
+   <input type = "submit" class="btn" value = "Sign Up" onclick="selectChkBox(3)/>
    <input type = "reset" class="btn" value = "Reset"/>
    </div>
    </div>
