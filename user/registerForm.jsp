@@ -53,7 +53,7 @@
 	}
 
 	function selectChkBox(limit) {
-		itr = document.getElementByName("interest");
+		var itr = document.getElementsByName("interest");
 
 		var sum = 0;
 		var count = itr.checkbox.length;
