@@ -202,7 +202,7 @@
    </table>
    <br/>
    <div class="btn2">
-   <input type = "submit" class="btn" value = "Sign Up" onclick="selectChkBox(3)/>
+   <input type = "submit" class="btn" value = "Sign Up" onclick="selectChkBox(3)"/>
    <input type = "reset" class="btn" value = "Reset"/>
    </div>
    </div>
