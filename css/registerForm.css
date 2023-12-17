@@ -103,3 +103,7 @@ body {
   color: #FBF4F4;
   transform: translateY(-30px);
 }
+
+span {
+	color: gray;
+}
