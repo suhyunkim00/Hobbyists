@@ -1,41 +1,23 @@
 package model;
 
-/** 사용자 관리를 위해 필요한 도메인 클래스. USERINFO 테이블과 대응됨 **/
-
+/**
+ * 사용자 관리를 위해 필요한 도메인 클래스. USERINFO 테이블과 대응됨
+ */
 public class User {
-	private String userId;
+	private static String userId;
 	private String name;
-	private String nickname;
+	private String nickName;
 	private String password;
 	private String phone;
 	private String email;
 	private String gender;
 	private String birth;
-	private String joinDate;
-	private String interest;
 	private String region;
-	private String profile;
 	
-	public User() { }	// 기본 생성자
-
-	public User(String userId, String name, String nickname, String password, 
-			String phone, String email, String gender, String birth, 
-			String joinDate, String interest, String region, String profile) {
-		this.userId = userId;
-		this.name = name;
-		this.nickname = nickname;
-		this.password = password;
-		this.phone = phone;
-		this.email = email;
-		this.gender = gender;
-		this.birth = birth;
-		this.joinDate = joinDate;
-		this.interest = interest;
-		this.region = region;
-		this.profile = profile;
-	}	
+	public User() {}
+	public User(String userId, String password, String name, String email, String phone, String nickName, String gender, String birth, String region) { }	// 기본 생성자
 	
-	public String getUserId() {
+	public static String getUserId() {
 		return userId;
 	}
 
@@ -51,12 +33,12 @@ public class User {
 		this.name = name;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setNickName(String nickname) {
-		this.nickname = nickname;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getPassword() {
@@ -99,21 +81,6 @@ public class User {
 		this.birth = birth;
 	}
 
-	public String getJoinDate() {
-		return joinDate;
-	}
-
-	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
-	}
-
-	public String getInterest() {
-		return interest;
-	}
-
-	public void setInterest(String interest) {
-		this.interest = interest;
-	}
 
 	public String getRegion() {
 		return region;
@@ -121,14 +88,6 @@ public class User {
 
 	public void setRegion(String region) {
 		this.region = region;
-	}
-
-	public String getProfile() {
-		return profile;
-	}
-
-	public void setProfile(String profile) {
-		this.profile = profile;
 	}
 	
 
