@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-//import model.Class;
-//import model.Apply;
+import model.Class;
+import model.User;
 
 /**
 * 사용자 관리를 위해 데이터베이스 작업을 전담하는 DAO 클래스
@@ -25,7 +25,7 @@ public class ClassDAO {
 	public Class create(Class cl) throws SQLException {
 			String sql = "INSERT INTO Class VALUES (clId_seq.nextval, ?, ?, ?, ?, SYSDATE, ?, ?, ?)";
 			Object[] param = new Object[] {cl.getLocation(), cl.getTitle(), cl.getPhoto(),
-	cl.getContent(), cl.getUploader(), cl.getClass_like(), cl.getClass_view()};
+	cl.getContent(), cl.getUploader(), cl.getView()};
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert 문과 매개 변수 설정
 			
 			String key[] = {"c_id"}; // PK 컬럼의 이름
@@ -98,7 +98,7 @@ public class ClassDAO {
 	* 저장하여 반환.
 	*/
 	public Class findClass(String keyword) throws SQLException {
-		String sql = "SELECT c_id, location, title, photo, content, uploadDate, uploader, class_like, class_view"
+		String sql = "SELECT location, title, photo, content, uploader, class_view, c_id"
 					+ "FROM Class"
 					+ "WHERE title LIKE %?% OR content LIKE %?%";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {keyword, keyword}); // JDBCUtil 에 query 문과 매개 변수 설정
@@ -107,16 +107,14 @@ public class ClassDAO {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			if (rs.next()) { // 일치 정보 발견
 				cl = new Class( // Class 객체를 생성하여 모임 정보를 저장
-					keyword,
-					rs.getString("c_id"),
+					//keyword,
 					rs.getString("location"),
 					rs.getString("title"),
 					rs.getString("photo"),
 					rs.getString("content"),
-					rs.getString("uploadDate"),
 					rs.getString("uploader"),
-					rs.getInt("class_like"),
-					rs.getInt("class_view") );
+					rs.getInt("class_view"), 
+					rs.getInt("c_id"));
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -139,15 +137,14 @@ public class ClassDAO {
 		List<Class> clList = new ArrayList<Class>(); // Class 들의 리스트 생성
 		while (rs.next()) {
 			Class cl = new Class( // Class 객체를 생성하여 현재 행의 정보를 저장
-				rs.getString("c_id"),
-				rs.getString("location"),
-				rs.getString("title"),
-				rs.getString("photo"),
-				rs.getString("content"),
-				rs.getString("uploadDate"),
-				rs.getString("uploader"),
-				rs.getInt("class_like"),
-				rs.getInt("class_view") );
+					//keyword,
+					rs.getString("location"),
+					rs.getString("title"),
+					rs.getString("photo"),
+					rs.getString("content"),
+					rs.getString("uploader"),
+					rs.getInt("class_view"), 
+					rs.getInt("c_id"));
 			clList.add(cl); // List 에 Class 객체 저장
 		}
 		return clList;
@@ -171,15 +168,14 @@ public class ClassDAO {
 			List<Class> clList = new ArrayList<Class>(); // Class 들의 리스트 생성
 			while (rs.next()) {
 				Class cl = new Class( // Class 객체를 생성하여 현재 행의 정보를 저장
-						rs.getString("c_id"),
+						//keyword,
 						rs.getString("location"),
 						rs.getString("title"),
 						rs.getString("photo"),
 						rs.getString("content"),
-						rs.getString("uploadDate"),
 						rs.getString("uploader"),
-						rs.getInt("class_like"),
-						rs.getInt("class_view") );
+						rs.getInt("class_view"), 
+						rs.getInt("c_id"));
 					clList.add(cl); // List 에 Class 객체 저장
 				}			
 				return clList;
@@ -203,15 +199,14 @@ public class ClassDAO {
 			List<Class> clList = new ArrayList<Class>(); // Class 들의 리스트 생성
 			while (rs.next()) {
 				Class cl = new Class( // Class 객체를 생성하여 현재 행의 정보를 저장
-					rs.getString("c_id"),
-					rs.getString("location"),
-					rs.getString("title"),
-					rs.getString("photo"),
-					rs.getString("content"),
-					rs.getString("uploadDate"),
-					rs.getString("uploader"),
-					rs.getInt("class_like"),
-					rs.getInt("class_view") );
+						//keyword,
+						rs.getString("location"),
+						rs.getString("title"),
+						rs.getString("photo"),
+						rs.getString("content"),
+						rs.getString("uploader"),
+						rs.getInt("class_view"), 
+						rs.getInt("c_id"));
 				clList.add(cl); // List 에 Class 객체 저장
 			}
 			return clList;
