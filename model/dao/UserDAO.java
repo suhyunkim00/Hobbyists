@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
+import model.service.UserNotFoundException;
 
 /**
  * 사용자 관리를 위해 데이터베이스 작업을 전담하는 DAO 클래스
@@ -23,10 +24,9 @@ public class UserDAO {
     public int create(User user) throws SQLException {
         String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Object[] param = new Object[] { user.getUserId(), user.getPassword(),
-                user.getName(), user.getNickname(), user.getGender(), user.getBirth(),
+                user.getName(), user.getNickName(), user.getGender(), user.getBirth(),
                 user.getPhone(),
-                user.getEmail(), user.getRegion(),
-                (user.getCommId() != 0) ? user.getCommId() : null };
+                user.getEmail(), user.getRegion() };
         jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert 문과 매개 변수 설정
         try {
             int result = jdbcUtil.executeUpdate(); // insert 문 실행
@@ -46,11 +46,11 @@ public class UserDAO {
     */
     public int modifyProfile(User user) throws SQLException {  
         String sql = "UPDATE USERINFO "
-        + "SET password=?, name=?, email=?, phone=?, commId=?, nickName=?, birth=?, region=?"
+        + "SET password=?, name=?, email=?, phone=?, nickName=?, birth=?, region=?"
         + "WHERE userid=?";
     Object[] param = new Object[] {user.getPassword(), user.getName(), 
-        user.getEmail(), user.getPhone(), user.getNickname(),
-        user.getBirth(), user.getRegion(), (user.getCommId()!=0) ? user.getCommId() : null, user.getUserId()};
+        user.getEmail(), user.getPhone(), user.getNickName(),
+        user.getBirth(), user.getRegion()};
     
         jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 update 문과 매개 변수 설정
 
@@ -72,7 +72,8 @@ public class UserDAO {
     */
     public int deleteProfile(String memberId) throws SQLException {
         String sql = "DELETE FROM USERINFO WHERE userid=?";
-        jdbcUtil.setSqlAndParameters(sql, new Object[] {userId}); // JDBCUtil 에 delete 문과 매개 변수설정
+        JDBCUtil jdbcUtil2 = new JDBCUtil();
+		jdbcUtil2.setSqlAndParameters(sql, new Object[] {User.getUserId()}); // JDBCUtil 에 delete 문과 매개 변수설정
         
         try {
             int result = jdbcUtil.executeUpdate(); // delete 문 실행
@@ -88,7 +89,7 @@ public class UserDAO {
     }
     
     public User getUserData(String userId) throws SQLException {
-        String sql = "SELECT password, name, email, phone, ,nickName, gender, birth, region, commId, cName "
+        String sql = "SELECT password, name, email, phone, nickName, gender, birth, region "
         + "FROM USERINFO "
         + "WHERE userid=? ";
         
@@ -98,15 +99,15 @@ public class UserDAO {
             ResultSet rs = jdbcUtil.executeQuery(); // query 실행
             if (rs.next()) { // 학생 정보 발견
                 User user = new User( // User 객체를 생성하여 학생 정보를 저장
-                userId,
+                rs.getString("userId"),
                 rs.getString("password"),
                 rs.getString("name"),
+                rs.getString("email"),
+                rs.getString("phone"),
                 rs.getString("nickName"),
                 rs.getString("gender"),
                 rs.getString("birth"),
-                rs.getString("email"),
-                rs.getString("region"),
-                rs.getString("phone"));
+                rs.getString("region"));
                 return user;
             }
         } catch (Exception ex) {
@@ -124,12 +125,12 @@ public class UserDAO {
         String sql = "SELECT userId, nickName, email, region, NVL(commId,0) AS commId, cName "
                 + "FROM USERINFO "
                 + "ORDER BY userId";
-        jdbcUtil.setSqlAndParameters(sql, null); // JDBCUtil 에 query 문 설정
+        jdbcUtil.setSqlAndParameters(sql, null);
         try {
-            ResultSet rs = jdbcUtil.executeQuery(); // query 실행
-            List<User> userList = new ArrayList<User>(); // Member 들의 리스트 생성
+            ResultSet rs = jdbcUtil.executeQuery();
+            List<User> userList = new ArrayList<User>();
             while (rs.next()) {
-                User user = new User( // Member 객체를 생성하여 현재 행의 정보를 저장
+                User user = new User(
                     rs.getString("userId"),
                     rs.getString("password"),
                     rs.getString("name"),
@@ -138,8 +139,8 @@ public class UserDAO {
                     rs.getString("birth"),
                     rs.getString("email"),
                     rs.getString("region"),
-                    rs.getString("phone"));
-                userList.add(user); // List 에 User 객체 저장
+                    rs.getString("phone")) ;
+                	userList.add(user); // List 에 User 객체 저장
             }
             return userList;
         } catch (Exception ex) {
@@ -149,4 +150,26 @@ public class UserDAO {
         }
         return null;
     }
+
+	public User findUser(String userId) throws UserNotFoundException {
+		User[] users = null;
+		for(User user : users) {
+			if(user.getUserId().equals(Long.valueOf(userId))) {
+				return user;
+			}
+		}
+		throw new UserNotFoundException();
+		//throw new ClientException(String.format("User id: %d not found!", user.getId()));
+	}
+
+	public List<User> findUserList(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean existingUser(String userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
