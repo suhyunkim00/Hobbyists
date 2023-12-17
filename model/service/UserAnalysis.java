@@ -33,7 +33,7 @@ public class UserAnalysis {
 		while (userIter.hasNext()) {
 			User user = (User)userIter.next();
 			
-			if (user.getUserId().equals(userId)) continue;
+			if (User.getUserId().equals(userId)) continue;
 			int m2 = user.getEmail().indexOf('@');
 			if (m2 == -1) continue;
 			String mserver2 = user.getEmail().substring(m2);
