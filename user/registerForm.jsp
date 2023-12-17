@@ -184,7 +184,7 @@
 						</div>
 					</td>
 					<td>
-					      	<input type="submit" value="check" onclick="selectChkBox(3)"/>
+					      	<input type="submit" class="btn" value="check" onclick="selectChkBox(3)"/>
 					</td>
 				</tr>
 			</table>
