@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.*, model.*" %>
+<%@page import="java.util.*" %>
+<%@page import="model.Category" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%
-	@SuppressWarnings("unchecked") 
-	List<Category> categoryList = (List<Category>)request.getAttribute("categoryList");
-	String CategoryId = (String)request.getAttribute("categoryId");
-%>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,37 +32,19 @@
         </ul>
     </nav>
 <main>
-	<p id="categoryList"></p>
-		<br>
-		<table style="width:100%">
-<% 
-	if (categoryList != null) {	
-	  Iterator<Category> categoryIter = categoryList.iterator();
-	
-	  //카테고리 리스트를 클라이언트에게 보여주기 위하여 출력.
-	  while ( categoryIter.hasNext() ) {
-		Category category = (Category)categoryIter.next();
-%>		  	
-		<tr>
-		  <td width="190" align="center" bgcolor="ffffff" height="20">
-			<%=category.getId()%>
-		  </td>
-		  <td width="200" bgcolor="ffffff" style="padding-left: 10">
-			<a href="<c:url value='/category/view'>
-					   <c:param name='categoryId' value='<%=category.getId()%>'/>
-			 		 </c:url>">
-			  <%=category.getName()%></a>
-		  </td>
-		</tr>
-<%
-	  }
-	}
-%>	  	
-</table>	
-	  <br>   
-	  <a href="<c:url value='/category/creation/form' />">카테고리 추가</a> 
-	  <br>
-	  <a href="<c:url value='/category/list' />">사용자 목록</a>
+	<br>
+	<table style="width:100%">
+		<c:forEach var="cate" items="${cateList}">
+			<tr>
+			  <td class="cateCell">			
+				  <a href="<c:url value='/category/category_detail'>
+						   <c:param name='cateId' value='${cate.cateId}'/>
+						 </c:url>">
+				  ${cate.name}</a>
+			  </td>
+			</tr>
+		</c:forEach> 	
+</table>	  	 
 </main>
 </body>
 </html>
