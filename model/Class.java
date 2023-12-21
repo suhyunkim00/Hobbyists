@@ -8,7 +8,7 @@ public class Class {
 	private String photo;
 	private String content;
 	private String uploader;
-	private int view;
+	private int view_cnt;
 	private int id;
 	private int cateId;
 	private String cateName;
@@ -20,18 +20,18 @@ public class Class {
     }
 
     public Class(String location, String title, String photo, String content, 
-    				String  uploader, int view, int id) {
+    				String  uploader, int view_cnt, int id) {
         super();
         this.location = location;
         this.title = title;
         this.photo = photo;
         this.content = content;
         this.uploader = uploader;
-        this.view = view;
+        this.view_cnt = view_cnt;
         this.id = id;
     }    
     
-	public Class(String location, String title, String photo, String content, String uploader, int view, int id,
+	public Class(String location, String title, String photo, String content, String uploader, int view_cnt, int id,
 			int cateId, String cateName, int numOfMembers, List<User> memberList) {
 		super();
 		this.location = location;
@@ -39,7 +39,7 @@ public class Class {
 		this.photo = photo;
 		this.content = content;
 		this.uploader = uploader;
-		this.view = view;
+		this.view_cnt = view_cnt;
 		this.id = id;
 		this.cateId = cateId;
 		this.cateName = cateName;
@@ -87,12 +87,12 @@ public class Class {
 		this.uploader = uploader;
 	}
 
-	public int getView() {
-		return view;
+	public int getView_cnt() {
+		return view_cnt;
 	}
 
-	public void setView(int view) {
-		this.view = view;
+	public void setView_cnt(int view_cnt) {
+		this.view_cnt = view_cnt;
 	}
 
 	public int getId() {
@@ -138,7 +138,7 @@ public class Class {
 	@Override
 	public String toString() {
 		return "Class [location=" + location + ", title=" + title + ", photo=" + photo + ", content=" + content
-				+ ", uploader=" + uploader + ", view=" + view + ", id=" + id + ", cateId=" + cateId + ", cateName="
+				+ ", uploader=" + uploader + ", view_cnt=" + view_cnt + ", id=" + id + ", cateId=" + cateId + ", cateName="
 				+ cateName + ", numOfMembers=" + numOfMembers + ", memberList=" + memberList + "]";
 	}
 
