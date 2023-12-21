@@ -13,7 +13,7 @@ import model.service.UserNotFoundException;
 
 public class UserDAO {
 	
-	private Connection conn;
+	/*private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
@@ -52,9 +52,9 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return -2; // 데이터베이스 오류
-	}
+	}*/
 	
-    /*private JDBCUtil jdbcUtil = null;
+    private JDBCUtil jdbcUtil = null;
 
     public UserDAO() {
         jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
@@ -204,6 +204,6 @@ public class UserDAO {
 	public boolean existingUser(String userId) {
 		// TODO Auto-generated method stub
 		return false;
-	}*/
+	}
 
 }
