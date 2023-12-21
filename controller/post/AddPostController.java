@@ -14,6 +14,7 @@ import model.User;
 import model.service.PostManager;
 import model.service.UserManager;
 
+
 public class AddPostController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(AddPostController.class);
 
@@ -36,6 +37,9 @@ public class AddPostController implements Controller {
 			return "redirect:/post/PostList";
 		}
         request.setAttribute("post", post);            
-        return "/myPage/myPage.jsp";  
-    }
+        return "../post/showAllPost.jsp";
+	}
+    
+    
+    
 }
