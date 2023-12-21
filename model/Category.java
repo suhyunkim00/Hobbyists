@@ -8,16 +8,17 @@ import java.util.List;
 public class Category {
 	private int id;
 	private String name;
-	private List<Category> categoryList;
-	
+	private int numOfClasses;
+	private List<Class> classList;
+
 	public Category() { }		// 기본 생성자
-	
+
 	public Category(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
-	
+
 
 	public int getId() {
 		return id;
@@ -34,13 +35,21 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public List<Category> getCategoryList() {
-		return categoryList;
+
+	public int getNumOfClasses() {
+		return numOfClasses;
+	}
+
+	public void setNumOfClasses(int numOfClasses) {
+		this.numOfClasses = numOfClasses;
 	}
 	
-	public void setMemberList(List<Category> categoryList) {
-		this.categoryList = categoryList;
+	public List<Class> getClassList() {
+		return classList;
+	}
+
+	public void setClassList(List<Class> classList) {
+		this.classList = classList;
 	}
 
 	@Override
