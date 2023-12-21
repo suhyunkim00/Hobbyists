@@ -25,7 +25,7 @@ public class ClassDAO {
 	public Class create(Class cl) throws SQLException {
 			String sql = "INSERT INTO Class VALUES (clId_seq.nextval, ?, ?, ?, ?, SYSDATE, ?, ?, ?)";
 			Object[] param = new Object[] {cl.getLocation(), cl.getTitle(), cl.getPhoto(),
-	cl.getContent(), cl.getUploader(), cl.getView()};
+	cl.getContent(), cl.getUploader(), cl.getView_cnt()};
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert 문과 매개 변수 설정
 			
 			String key[] = {"c_id"}; // PK 컬럼의 이름
