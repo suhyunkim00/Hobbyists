@@ -11,7 +11,7 @@ import model.User;
 import model.Post;
 
 public class PostDAO {
-	private Connection conn;
+	/*private Connection conn;
 	private ResultSet rs;
 	
 	public PostDAO() {
@@ -76,9 +76,9 @@ public class PostDAO {
 		}
 		
 		return -1;
-	}
+	}*/
 	
-    /*private JDBCUtil jdbcUtil;
+    private JDBCUtil jdbcUtil;
 
     public PostDAO() {
         jdbcUtil = new JDBCUtil();
@@ -181,5 +181,5 @@ public class PostDAO {
         user.setUserId(resultSet.getString("user_id"));
         user.setName(resultSet.getString("user_name"));
         return user;
-    }*/
+    }
 }
