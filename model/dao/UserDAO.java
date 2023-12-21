@@ -1,26 +1,66 @@
 package model.dao;
 
 import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
 import model.service.UserNotFoundException;
 
-/**
- * 사용자 관리를 위해 데이터베이스 작업을 전담하는 DAO 클래스
- * USERINFO 테이블에 사용자 정보를 추가, 수정, 삭제, 검색 수행
- */
+
 public class UserDAO {
-    private JDBCUtil jdbcUtil = null;
+	
+	private Connection conn;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	
+	public UserDAO() {
+		try {
+			String dbURL = "jdbc:oracle:thin:@dblab.dongduk.ac.kr:1521/orclpdb";
+			String dbID = "dbp0104";
+			String dbPW = "112026";
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			conn = DriverManager.getConnection(dbURL,dbID,dbPW);
+			// 여기까지가 mysql에 접속 할 수 있게 해주는 부분
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 로그인을 시도하는 하나의 함수
+	public int login(String userID, String userPassword) {
+		
+		String SQL = "SELECT userPassword FROM MEMBER WHERE userID =?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(userPassword)) {
+					return 1; // 로그인성공
+				}else {
+					return 0; // 비밀번호 불일치
+				}
+			}
+			return -1; // 아이디가 없음
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -2; // 데이터베이스 오류
+	}
+	
+    /*private JDBCUtil jdbcUtil = null;
 
     public UserDAO() {
         jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
     }
 
-    /**
-     * 사용자 관리 테이블에 새로운 사용자 생성.
-     */
+
     public int create(User user) throws SQLException {
         String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Object[] param = new Object[] { user.getUserId(), user.getPassword(),
@@ -41,9 +81,7 @@ public class UserDAO {
         return 0;
     }
 
-    /**
-    * 기존의 사용자 정보를 수정.
-    */
+
     public int modifyProfile(User user) throws SQLException {  
         String sql = "UPDATE USERINFO "
         + "SET password=?, name=?, email=?, phone=?, nickName=?, birth=?, region=?"
@@ -67,9 +105,7 @@ public class UserDAO {
         return 0;
     }
 
-    /**
-    * 사용자 ID 에 해당하는 사용자를 삭제.
-    */
+
     public int deleteProfile(String memberId) throws SQLException {
         String sql = "DELETE FROM USERINFO WHERE userid=?";
         JDBCUtil jdbcUtil2 = new JDBCUtil();
@@ -118,9 +154,7 @@ public class UserDAO {
         return null;
     }
 
-    /**
-     * 전체 사용자 정보를 검색하여 List 에 저장 및 반환
-     */
+ 
     public List<User> getHost() throws SQLException {
         String sql = "SELECT userId, nickName, email, region, NVL(commId,0) AS commId, cName "
                 + "FROM USERINFO "
@@ -170,6 +204,6 @@ public class UserDAO {
 	public boolean existingUser(String userId) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}*/
 
 }
