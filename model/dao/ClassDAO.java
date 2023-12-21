@@ -221,7 +221,7 @@ public class ClassDAO {
 	/**
 	* 주어진 ID 에 해당하는 모임이 존재하는지 검사
 	*/
-	public boolean existingClass(String clId) throws SQLException {
+	public boolean existingClass(int clId) throws SQLException {
 		String sql = "SELECT count(*) FROM Class WHRE c_id=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {clId}); // JDBCUtil 에 query 문과 매개 변수 설정
 		
@@ -239,33 +239,6 @@ public class ClassDAO {
 		return false;
 	}
 
-	/**
-	 * 신청 테이블 새로운 행 생성 (PK 값은 Sequence 를 이용하여 자동 생성)
-	 */
-	public Apply create (Apply app) throws SQLException {
-		String sql = "INSERT INTO Apply VALUES (appNum_seq.nextval, ?, ?, ?, SYSDATE, ?, ?)";
-		Object[] param = new Object[] {app.getC_id(), app.getRegion(), app.getUploader(),
-				app.getC_name(), app.getUserId()};
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert 문과 매개 변수 설정
-		
-		String key[] = {"appNum"}; // PK 컬럼의 이름
-		try {
-			jdbcUtil.executeUpdate(key); // insert 문 실행
-			ResultSet rs = jdbcUtil.getGeneratedKeys();
-			if(rs.next()) {
-				int generatedKey = rs.getInt(1); // 생성된 PK 값
-				app.setId(generatedKey); // id 필드에 저장
-			}
-			return app;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
-		}
-		return null;
-	}
 	/**
 	 * 주어진 ID 에 해당하는 모임 신청 정보를 삭제.
 	 */
@@ -286,4 +259,57 @@ public class ClassDAO {
 		}
 		return 0;
 		}
+	
+	/**
+	 * 특정 카테고리에 속한 클래스들을 검색하여 List에 저장 및 반환
+	 */
+	public List<Class> findClassesInCategory(int categoryId) throws SQLException {
+			String sql = "SELECT c_id, location, title, photo, content, uploadDate, uploader, class_like, class_view"
+						+ "FROM Class "
+						+ "ORDER BY c_id DESC";
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {categoryId});	// JDBCUtil에 query문과 매개 변수 설정
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			List<Class> classList = new ArrayList<Class>();	// class들의 리스트 생성
+			while (rs.next()) {
+				Class cl = new Class(			// Class 객체를 생성하여 현재 행의 정보를 저장
+						rs.getString("location"),
+						rs.getString("title"),
+						rs.getString("photo"),
+						rs.getString("content"),
+						rs.getString("uploader"),
+						rs.getInt("class_view"), 
+						rs.getInt("c_id"));
+				classList.add(cl);			// List에 Class 객체 저장
+			}		
+			return classList;					
+				
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
+	/**
+	 * 특정 카테고리에 속한 클래스들의 수를 count하여 반환
+	 */
+	public int getNumberOfClassesInCategory(int cateId) {
+		String sql = "SELECT COUNT(id) FROM User"
+     				+ "WHERE cateId = ?";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {cateId});	// JDBCUtil에 query문과 매개 변수 설정
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			rs.next();										
+			return rs.getInt(1);			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return 0;
+	}
 }
