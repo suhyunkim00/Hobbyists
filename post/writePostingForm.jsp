@@ -67,7 +67,7 @@
 			    		</tr>
 			    	</tbody>
     	    	</table>
-    	    	<input type="submit" class="btn" style="background-color: #E9C5C5;" value="글쓰기">
+    	    	<input type="submit" class="btn" style="background-color: #E9C5C5;" value="등록하기">
     		</form>
     	    </div>
     </div>
