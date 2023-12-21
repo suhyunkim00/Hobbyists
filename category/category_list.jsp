@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.*" %>
-<%@page import="model.Category" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import = "java.util.List, java.util.ArrayList, java.util.Map" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,23 +26,21 @@
             <li><a href="#">Category</a></li>
             <li><a href="../post/showBestPost.jsp">Best</a></li>
             <li><a href="../post/showAllPost.jsp">Hobbyists</a></li>
-            <li><a href="../user/myPage.jsp">Mypage</a></li>
+            <li><a href="../myPage/myPage.jsp">Mypage</a></li>
         </ul>
     </nav>
-<main>
-	<br>
-	<table style="width:100%">
-		<c:forEach var="cate" items="${cateList}">
-			<tr>
-			  <td class="cateCell">			
-				  <a href="<c:url value='/category/category_detail'>
-						   <c:param name='cateId' value='${cate.cateId}'/>
-						 </c:url>">
-				  ${cate.name}</a>
-			  </td>
-			</tr>
-		</c:forEach> 	
-</table>	  	 
-</main>
+	<main>
+		<div>
+			<ul>
+				<li><a href="#">게임</a></li>
+				<li><a href="#">반려동물</a></li>
+				<li><a href="#">스터디</a></li>
+				<li><a href="#">스포츠</a></li>
+				<li><a href="#">여행</a></li>
+				<li><a href="#">예술</a></li>
+				<li><a href="#">요리</a></li>
+			</ul>
+		</div>
+    </main>
 </body>
 </html>
