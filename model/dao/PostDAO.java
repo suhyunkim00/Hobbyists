@@ -1,13 +1,84 @@
 package model.dao;
 
 import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.*;
 import model.User;
 import model.Post;
 
 public class PostDAO {
-    private JDBCUtil jdbcUtil;
+	private Connection conn;
+	private ResultSet rs;
+	
+	public PostDAO() {
+		try {
+			String dbURL = "jdbc:oracle:thin:@dblab.dongduk.ac.kr:1521/orclpdb"; 
+			String dbID = "dbp0104";
+			String dbPW = "112026";
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			conn = DriverManager.getConnection(dbURL, dbID, dbPW);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String getDate() {
+		String SQL = "SELECT NOW()";
+		try {
+			PreparedStatement pstat = conn.prepareStatement(SQL);
+			rs = pstat.executeQuery();
+			
+			if(rs.next())
+				return rs.getString(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	public int getNext() {
+		String SQL = "SELECT boardID from POST ORDER BY boardID DESC";
+		
+		try {
+			PreparedStatement pstat = conn.prepareStatement(SQL);
+			rs = pstat.executeQuery();
+			
+			if(rs.next())
+				return rs.getInt(1) + 1;
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int write(String title, String id, String content) {
+		String SQL = "INSERT INTO POST VALUES (?, ?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement pstat = conn.prepareStatement(SQL);
+			pstat.setInt(1, getNext());
+			pstat.setString(2, title);
+			pstat.setString(3, id);
+			pstat.setString(4, getDate());
+			pstat.setString(5, content);
+			pstat.setInt(6, 1);
+			
+			return pstat.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
+	
+    /*private JDBCUtil jdbcUtil;
 
     public PostDAO() {
         jdbcUtil = new JDBCUtil();
@@ -110,5 +181,5 @@ public class PostDAO {
         user.setUserId(resultSet.getString("user_id"));
         user.setName(resultSet.getString("user_name"));
         return user;
-    }
+    }*/
 }
